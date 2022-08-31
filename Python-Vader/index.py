@@ -1,0 +1,33 @@
+
+from newspaper import Article
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+from textblob import TextBlob
+import nltk
+nltk.download('vader_lexicon')
+
+
+# with open('text.txt', 'r') as f:
+#     text = f.read()
+
+# text = "https://www.gmanetwork.com/news/balitambayan/balita/842713/lalaki-patay-sa-pananaksak-ng-dating-nobyo-ng-kanyang-kinakasama/story/"
+
+text = """
+Ang aking internet ay mabagal!!!
+"""
+
+# 😡
+
+# If the text content are url link
+# article = Article(text)
+# article.download()
+# article.parse()
+# article.nlp()
+# f = article.summary
+
+blob = TextBlob(text) # link = f, text = text 
+
+word = str(blob.translate(from_lang='tl', to='en'))
+
+analyzer = SentimentIntensityAnalyzer()
+vs = analyzer.polarity_scores(word)
+print(word, '\n', vs)
